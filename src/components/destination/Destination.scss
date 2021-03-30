@@ -1,0 +1,160 @@
+#main_div{
+  height: 600px;
+  
+  .header{
+    height:100px;
+    div{
+      .title{
+        display: inline-block;
+        width: 80%;
+        h1{
+          float: right;
+          padding: 5px;
+          margin: 0 31% 0 0;
+        }
+      }
+      .header-options{
+        display: inline-block;
+        width:20%;
+        .reset{
+          position: relative;
+          cursor: pointer;
+          bottom: 18px;
+          margin-left: 12%;
+        }
+      }
+    }
+    div.planet-message{
+      width:70%;
+      p{
+        font-size: 20px;
+        font-weight: 500;
+        float: right;
+        padding: 5px;
+        margin: 10px 18% 10px 0;
+      }
+    }
+  }
+
+
+  .des_select{
+    height: 350px;
+    margin-top: 50px;
+    > div > div{
+      margin-left: 3%;
+      width: 17%;
+      float: left;
+      display: inline-block;
+      div {
+        h4{
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  .footer{
+    text-align: center;
+    button{
+      background-color: #4CAF50;
+      border: 3px solid black;
+      color: black;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+    }
+  }
+}
+
+.disabled{
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.css-1okebmr-indicatorSeparator{
+  display:none;
+}
+
+@media screen and (max-width: 1120px) {
+  .header{
+    .title{
+      width: 60% !important;
+      h1{
+        margin: 0 10% 0 0 !important;
+      }
+    }
+    .header-options{
+      width:39% !important;
+      .reset{
+        float: right !important;
+      }
+    }
+    .planet-message p{
+      margin: 10px 15% 10px 0 !important;
+    }
+  }
+
+  .des_select > div > div{
+    margin-left: 2% !important;
+    width: 16% !important;
+  }
+
+  .des_select div.count{
+      width: 25% !important;
+      margin-left: 10px !important;
+      h2{
+        float: right !important;
+      }
+    }
+}
+
+@media screen and (max-width: 860px) {
+  div{
+    font-size: 13px !important;
+  }
+  p{
+    font-size: 15px !important;
+  }
+  h1{
+    font-size: 24px !important;
+  }
+  h4{
+    font-size: 14px !important;
+  }
+  h2{
+    font-size: 16px !important;
+  }
+  button{
+    height: 40px;
+    padding: 10px !important;
+  }
+  .des_select{
+    height: 250px !important;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  div{
+    font-size: 13px !important;
+  }
+  p{
+    font-size: 14px !important;
+  }
+  h1{
+    font-size: 24px !important;
+  }
+  h4{
+    font-size: 12px !important;
+  }
+  h2{
+    font-size: 14px !important;
+  }
+  .des_select{
+    margin-top: 0 !important;
+  }
+  #main_div{
+    height: 350px !important;
+  }
+}

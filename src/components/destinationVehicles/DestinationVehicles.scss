@@ -1,0 +1,50 @@
+.vehicleRadioButton1,.vehicleRadioButton2,.vehicleRadioButton3,.vehicleRadioButton4{
+  padding-top: 30px;
+  position: absolute;
+  div div{
+    margin: 5px 0;
+  }
+}
+
+input {
+  float: left;
+  margin-right: 10px;
+}
+
+
+@media screen and (max-width: 860px) {
+	.vehicleRadioButton1,.vehicleRadioButton2,.vehicleRadioButton3,.vehicleRadioButton4{
+		word-spacing: 1px !important;
+		label{
+			font-size: 11px !important;
+		}
+	    div div{
+	      margin: 3px 0 !important;
+	  	}
+	  	input{
+	  		margin: 3px !important;
+	  	}
+  	}
+}
+
+@media screen and (max-width: 620px) {
+	.vehicleRadioButton1,.vehicleRadioButton2,.vehicleRadioButton3,.vehicleRadioButton4{
+		word-spacing: -1px !important;
+	    div div{
+	      margin: 3px 0 !important;
+	  	}
+	  	input{
+	  		margin: 3px !important;
+	  	}
+	  	label{
+			font-size: 8px !important;
+		}
+		.css-1uccc91-singleValue {
+			max-width: 0;
+		}
+	}
+	.css-2b097c-container .css-yk16xz-control{
+		min-height: 30px !important;
+		height: 30px !important;
+	}
+}

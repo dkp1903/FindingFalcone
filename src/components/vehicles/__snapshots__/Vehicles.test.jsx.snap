@@ -23,7 +23,7 @@ exports[`renders successfully with props 1`] = `
         <input
           checked=""
           id="react-radio-button-group-1-Rocket"
-          name="vehicalRadioButton1"
+          name="vehicleRadioButton1"
           type="radio"
           value="Rocket"
         />

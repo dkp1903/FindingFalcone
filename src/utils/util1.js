@@ -2,9 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Result from '.././components/result/Result.jsx';
-import {NotificationContainer, NotificationManager} from 'react-notifications';
 
-const URL = `https://findfalcone.herokuapp.com/`
 export const  utilFunctions = {
   geekTrustHome: () => {
     window.location = "https://www.geektrust.in";
@@ -12,16 +10,16 @@ export const  utilFunctions = {
 
   planetDistanceJson: (data) => {
     const pDistance = {};
-    data.forEach((element) => {
-      pDistance[element.name] = element.distance
+    data.forEach((obj) => {
+      pDistance[obj.name] = obj.distance
     });
     return pDistance;
   },
 
   vehicleSpeedJson: (data) => {
     const vSpeed = {};
-    data.forEach((element) => {
-      vSpeed[element.name] = {"speed": element.speed, "distance": element.max_distance}
+    data.forEach((obj) => {
+      vSpeed[obj.name] = {"speed": obj.speed, "distance": obj.max_distance}
     });
     return vSpeed;
   },
@@ -48,15 +46,15 @@ export const  utilFunctions = {
     return vehicles.map(vehicle => {return {...vehicle}});
   },
 
-  resetDestinationVehicles: (destinationVehicles, selectedVehicle, that) => {
-    that.setState ({
-      [destinationVehicles]: utilFunctions.setOriginalVehicle(that.state.vehicles),
+  resetDestinationVehicles: (destinationVehicles, selectedVehicle, commonState) => {
+    commonState.setState ({
+      [destinationVehicles]: utilFunctions.setOriginalVehicle(commonState.state.vehicles),
       [selectedVehicle]: '',
     });
   },
 
-  decreaseVehicleNumber: (vehicles, vehicleName, that) => {
-		const {selectedVehicle1, selectedVehicle2, selectedVehicle3, selectedVehicle4} = that.state;
+  decreaseVehicleNumber: (vehicles, vehicleName, commonState) => {
+		const {selectedVehicle1, selectedVehicle2, selectedVehicle3, selectedVehicle4} = commonState.state;
 		return vehicles.map(vehicleObj => {
 			if(vehicleObj.name === vehicleName) {
 				vehicleObj.total_no -=1;
@@ -65,46 +63,46 @@ export const  utilFunctions = {
 				vehicleObj.total_no -=1;
 				if(vehicleObj.total_no === -1){
 					vehicleObj.total_no = 0;
-					utilFunctions.resetDestinationVehicles('destination1Vehicles', 'selectedVehicle1', that);
+					utilFunctions.resetDestinationVehicles('destination1Vehicles', 'selectedVehicle1', commonState);
 				}
 			}
 			if(vehicleObj.name === selectedVehicle2){
 				vehicleObj.total_no -=1;
 				if(vehicleObj.total_no === -1){
 					vehicleObj.total_no = 0;
-					utilFunctions.resetDestinationVehicles('destination2Vehicles', 'selectedVehicle2', that);
+					utilFunctions.resetDestinationVehicles('destination2Vehicles', 'selectedVehicle2', commonState);
 				}
 			}
 			if(vehicleObj.name === selectedVehicle3){
 				vehicleObj.total_no -=1;
 				if(vehicleObj.total_no === -1){
 					vehicleObj.total_no = 0;
-					utilFunctions.resetDestinationVehicles('destination3Vehicles', 'selectedVehicle3', that);
+					utilFunctions.resetDestinationVehicles('destination3Vehicles', 'selectedVehicle3', commonState);
 				}
 			}
 			if(vehicleObj.name === selectedVehicle4){
 				vehicleObj.total_no -=1;
 				if(vehicleObj.total_no === -1){
 					vehicleObj.total_no = 0;
-					utilFunctions.resetDestinationVehicles('destination4Vehicles', 'selectedVehicle4', that);
+					utilFunctions.resetDestinationVehicles('destination4Vehicles', 'selectedVehicle4', commonState);
 				}
 			}
 			return vehicleObj
 		});
 	},
 
-  getVehiclesObject: (destinationVehicles, selectedPlanet, selectedVehicle, that) => {
+  getVehiclesObject: (destinationVehicles, selectedPlanet, selectedVehicle, commonState) => {
 		if(selectedVehicle.length) {
 			return destinationVehicles.map(vehicle => {
-				if(vehicle.max_distance < that.state.planetDistance[selectedPlanet] || (vehicle.total_no === 0 && vehicle.name !== selectedVehicle)) {
+				if(vehicle.max_distance < commonState.state.planetDistance[selectedPlanet] || (vehicle.total_no === 0 && vehicle.name !== selectedVehicle)) {
 					return { value:vehicle.name, label:`${vehicle.name} (${vehicle.total_no})`, itemClassName:"disabled" }
 				} else {
 					return { value:vehicle.name, label:`${vehicle.name} (${vehicle.total_no})`}
 				}
 			});
 		} else {
-			const {selectedVehicle1, selectedVehicle2, selectedVehicle3, selectedVehicle4} = that.state;
-			return that.state.vehicles.map(vehiclel => {
+			const {selectedVehicle1, selectedVehicle2, selectedVehicle3, selectedVehicle4} = commonState.state;
+			return commonState.state.vehicles.map(vehiclel => {
 				const vehicle = {...vehiclel};
 				if(selectedVehicle1 === vehicle.name) {
 					vehicle.total_no -= 1;
@@ -119,7 +117,7 @@ export const  utilFunctions = {
 					vehicle.total_no -= 1;
 				}
 
-				if(vehicle.max_distance < that.state.planetDistance[selectedPlanet] || vehicle.total_no === 0) {
+				if(vehicle.max_distance < commonState.state.planetDistance[selectedPlanet] || vehicle.total_no === 0) {
 					return { value:vehicle.name, label:`${vehicle.name} (${vehicle.total_no})`, itemClassName:"disabled" }
 				} else {
 					return { value:vehicle.name, label:`${vehicle.name} (${vehicle.total_no})` }
@@ -128,25 +126,27 @@ export const  utilFunctions = {
 		}
 	},
 
-  getFilteredVehicles: (destination, that) => {
+  getFilteredVehicles: (destination, commonState) => {
     switch(destination) {
       case 'Destination1':
-        return utilFunctions.getVehiclesObject(that.state.destination1Vehicles, that.state.selectedPlanet1, that.state.selectedVehicle1, that);
+        return utilFunctions.getVehiclesObject(commonState.state.destination1Vehicles, commonState.state.selectedPlanet1, commonState.state.selectedVehicle1, commonState);
       case 'Destination2':
-        return utilFunctions.getVehiclesObject(that.state.destination2Vehicles, that.state.selectedPlanet2, that.state.selectedVehicle2, that);
+        return utilFunctions.getVehiclesObject(commonState.state.destination2Vehicles, commonState.state.selectedPlanet2, commonState.state.selectedVehicle2, commonState);
       case 'Destination3':
-        return utilFunctions.getVehiclesObject(that.state.destination3Vehicles, that.state.selectedPlanet3, that.state.selectedVehicle3, that);
+        return utilFunctions.getVehiclesObject(commonState.state.destination3Vehicles, commonState.state.selectedPlanet3, commonState.state.selectedVehicle3, commonState);
       case 'Destination4':
-        return utilFunctions.getVehiclesObject(that.state.destination4Vehicles, that.state.selectedPlanet4, that.state.selectedVehicle4, that);
+        return utilFunctions.getVehiclesObject(commonState.state.destination4Vehicles, commonState.state.selectedPlanet4, commonState.state.selectedVehicle4, commonState);
       default:
-        return that.state.vehicles.map(vehicle => ({value:vehicle.name, label:`${vehicle.name} (${vehicle.total_no})`}));
+        return commonState.state.vehicles.map(vehicle => ({value:vehicle.name, label:`${vehicle.name} (${vehicle.total_no})`}));
     }
   },
 
-  planetObject(selPlanet, that) {
-    const {selectedPlanet1, selectedPlanet2, selectedPlanet3, selectedPlanet4} = that.state;
+  async planetObject(selPlanet, commonState) {
+    const {selectedPlanet1, selectedPlanet2, selectedPlanet3, selectedPlanet4} = await commonState.state;
+    //const { planets } = await commonState.state
+    //console.log('Error here : ', commonState.state.planets[0])
     let pValue = '';
-    const planets = that.state.planets.map(planet => {
+    const planets = commonState.state.planets.map(planet => {
       pValue = planet.name;
       if(pValue === selPlanet) {
          return { value: pValue, label: pValue }
@@ -159,19 +159,13 @@ export const  utilFunctions = {
     return planets.filter(value => Object.keys(value).length !== 0);;
   },
 
-  errorNotification: (error) => {
-    console.log("COMME")
-    NotificationManager.error(error, 'Click me!', 5000, () => {
-      alert('callback');
-    })
-  },
 
-  submitJson: (that) => {
+  submitJson: (commonState) => {
     const headers = {
       'Content-Type': 'application/json',
       'Accept' : 'application/json'
     }
-    const { selectedPlanet1, selectedPlanet2, selectedPlanet3, selectedPlanet4, selectedVehicle1, selectedVehicle2, selectedVehicle3, selectedVehicle4} = that.state;
+    const { selectedPlanet1, selectedPlanet2, selectedPlanet3, selectedPlanet4, selectedVehicle1, selectedVehicle2, selectedVehicle3, selectedVehicle4} = commonState.state;
     if(selectedPlanet1 !== '' && selectedPlanet2 !== '' && selectedPlanet3 !== '' && selectedPlanet4 !== '' && selectedVehicle1 !== '' && selectedVehicle2 !== '' && selectedVehicle3 !== '' && selectedVehicle4 !== '') {
       axios.post('https://findfalcone.herokuapp.com/token', {} , { headers: headers })
         .then((response) => {
@@ -186,26 +180,26 @@ export const  utilFunctions = {
                 throw "Please send the Request again or change the Planets and vehicle, Falcone didn't find"
               }
               ReactDOM.render(
-                <Result count={utilFunctions.getCount(that.state)} planetName={response.data.planet_name} />, document.getElementById('new-root')
+                <Result count={utilFunctions.getCount(commonState.state)} planetName={response.data.planet_name} />, document.getElementById('new-root')
               );
             })
             .catch((error) => {
-              utilFunctions.errorNotification(error)
+              alert(error);
             });
         })
         .catch((error) => {
-          utilFunctions.errorNotification(error)
+          alert(error);
         })
       }else {
-       utilFunctions.errorNotification('error')
+        alert('Please select 4 planets and 4 vehicles');
       }
   },
 
 
-  getDestinationAndVehiclesJson: (that) => {
+  getDestinationAndVehiclesJson: (commonState) => {
     axios.get('https://findfalcone.herokuapp.com/planets')
 			.then((response) => {
-  				that.setState ({
+  				commonState.setState ({
   					planets: response.data,
   					planetDistance: utilFunctions.planetDistanceJson(response.data),
   				})
@@ -216,7 +210,7 @@ export const  utilFunctions = {
 
 		axios.get('https://findfalcone.herokuapp.com/vehicles')
 			.then((response) => {
-				that.setState ({
+				commonState.setState ({
 					vehicles: response.data,
 					vehiclesSpeed: utilFunctions.vehicleSpeedJson(response.data),
 				});
@@ -226,16 +220,16 @@ export const  utilFunctions = {
 			});
   },
 
-  async updateVehicleObject(selectedVehicle, destinationVehicles, event, that) {
-		if(that.state[selectedVehicle].length) {
-			await that.setState ({
-				[destinationVehicles]: utilFunctions.setOriginalVehicle(that.state.vehicles),
+  async updateVehicleObject(selectedVehicle, destinationVehicles, event, commonState) {
+		if(commonState.state[selectedVehicle].length) {
+			await commonState.setState ({
+				[destinationVehicles]: utilFunctions.setOriginalVehicle(commonState.state.vehicles),
 				[selectedVehicle]: '',
 			});
 		}
-		that.setState ({
+		commonState.setState ({
 			[selectedVehicle]: event,
-			[destinationVehicles]: utilFunctions.decreaseVehicleNumber(that.state[destinationVehicles], event, that),
+			[destinationVehicles]: utilFunctions.decreaseVehicleNumber(commonState.state[destinationVehicles], event, commonState),
 		});
 	}
 

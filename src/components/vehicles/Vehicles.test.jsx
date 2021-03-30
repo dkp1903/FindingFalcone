@@ -28,7 +28,7 @@ let propObject = {
 it("renders successfully with props", () => {
 
   act(() => {
-    render(<Vehicals
+    render(<Vehicles
       vehicleSelectFun={() => {}}
       allProps={propObject} />, container);
   });

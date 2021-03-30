@@ -11,7 +11,7 @@ exports[`renders successfully with props 1`] = `
         class=" css-2b097c-container"
       >
         <div
-          class=" css-yk16xz-control"
+          class=" css-otc9nv-Control"
         >
           <div
             class=" css-1hwfws3"
@@ -118,7 +118,7 @@ exports[`renders successfully with props 1`] = `
         class=" css-2b097c-container"
       >
         <div
-          class=" css-yk16xz-control"
+          class=" css-otc9nv-Control"
         >
           <div
             class=" css-1hwfws3"
@@ -225,7 +225,7 @@ exports[`renders successfully with props 1`] = `
         class=" css-2b097c-container"
       >
         <div
-          class=" css-yk16xz-control"
+          class=" css-otc9nv-Control"
         >
           <div
             class=" css-1hwfws3"
@@ -305,7 +305,7 @@ exports[`renders successfully with props 1`] = `
         class=" css-2b097c-container"
       >
         <div
-          class=" css-yk16xz-control"
+          class=" css-otc9nv-Control"
         >
           <div
             class=" css-1hwfws3"

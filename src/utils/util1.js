@@ -1,31 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import Result from '.././components/Result/Result.jsx';
-import { getter, poster } from './services/apiCalls'
-import {NotificationContainer, NotificationManager} from 'react-notifications';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  useParams
-} from "react-router-dom";
+import Result from '.././components/result/Result.jsx';
 
-export const stateMethods = {
- 
+export const  utilFunctions = {
+  geekTrustHome: () => {
+    window.location = "https://www.geektrust.in";
+  },
 
   planetDistanceJson: (data) => {
     const pDistance = {};
-    data.forEach((element) => {
-      pDistance[element.name] = element.distance
+    data.forEach((obj) => {
+      pDistance[obj.name] = obj.distance
     });
     return pDistance;
   },
 
   vehicleSpeedJson: (data) => {
     const vSpeed = {};
-    data.forEach((element) => {
-      vSpeed[element.name] = {"speed": element.speed, "distance": element.max_distance}
+    data.forEach((obj) => {
+      vSpeed[obj.name] = {"speed": obj.speed, "distance": obj.max_distance}
     });
     return vSpeed;
   },
@@ -37,13 +31,13 @@ export const stateMethods = {
       count += planetDistance[planSelection1] / vehiclesSpeed[vehSelection1].speed;
     }
     if(vehSelection2) {
-      count += planetDistance[planSelection2] / vehiclesSpeed[vehSelection2].speed;
+      count += planetDistance[planSelection2] / vehiclesSpeed[vehSelection2].speed;;
     }
     if(vehSelection3) {
-      count += planetDistance[planSelection3] / vehiclesSpeed[vehSelection3].speed;
+      count += planetDistance[planSelection3] / vehiclesSpeed[vehSelection3].speed;;
     }
     if(vehSelection4) {
-      count += planetDistance[planSelection4] / vehiclesSpeed[vehSelection4].speed;
+      count += planetDistance[planSelection4] / vehiclesSpeed[vehSelection4].speed;;
     }
     return count;
   },
@@ -54,7 +48,7 @@ export const stateMethods = {
 
   resetDestinationVehicles: (Selectors, vehSelection, commonState) => {
     commonState.setState ({
-      [Selectors]: stateMethods.setOriginalVehicle(commonState.state.vehicles),
+      [Selectors]: utilFunctions.setOriginalVehicle(commonState.state.vehicles),
       [vehSelection]: '',
     });
   },
@@ -63,34 +57,34 @@ export const stateMethods = {
 		const {vehSelection1, vehSelection2, vehSelection3, vehSelection4} = commonState.state;
 		return vehicles.map(vehicleObj => {
 			if(vehicleObj.name === vehicleName) {
-				vehicleObj.total_no -= 1;
+				vehicleObj.total_no -=1;
 			}
 			if(vehicleObj.name === vehSelection1){
-				vehicleObj.total_no -= 1;
+				vehicleObj.total_no -=1;
 				if(vehicleObj.total_no === -1){
 					vehicleObj.total_no = 0;
-					stateMethods.resetDestinationVehicles('destination1Vehicles', 'vehSelection1', commonState);
+					utilFunctions.resetDestinationVehicles('destination1Vehicles', 'vehSelection1', commonState);
 				}
 			}
 			if(vehicleObj.name === vehSelection2){
-				vehicleObj.total_no -= 1;
+				vehicleObj.total_no -=1;
 				if(vehicleObj.total_no === -1){
 					vehicleObj.total_no = 0;
-					stateMethods.resetDestinationVehicles('destination2Vehicles', 'vehSelection2', commonState);
+					utilFunctions.resetDestinationVehicles('destination2Vehicles', 'vehSelection2', commonState);
 				}
 			}
 			if(vehicleObj.name === vehSelection3){
-				vehicleObj.total_no -= 1;
+				vehicleObj.total_no -=1;
 				if(vehicleObj.total_no === -1){
 					vehicleObj.total_no = 0;
-					stateMethods.resetDestinationVehicles('destination3Vehicles', 'vehSelection3', commonState);
+					utilFunctions.resetDestinationVehicles('destination3Vehicles', 'vehSelection3', commonState);
 				}
 			}
 			if(vehicleObj.name === vehSelection4){
-				vehicleObj.total_no -= 1;
+				vehicleObj.total_no -=1;
 				if(vehicleObj.total_no === -1){
 					vehicleObj.total_no = 0;
-					stateMethods.resetDestinationVehicles('destination4Vehicles', 'vehSelection4', commonState);
+					utilFunctions.resetDestinationVehicles('destination4Vehicles', 'vehSelection4', commonState);
 				}
 			}
 			return vehicleObj
@@ -101,9 +95,9 @@ export const stateMethods = {
 		if(vehSelection.length) {
 			return Selectors.map(vehicle => {
 				if(vehicle.max_distance < commonState.state.planetDistance[planSelection] || (vehicle.total_no === 0 && vehicle.name !== vehSelection)) {
-					return { value:vehicle.name, label:`${vehicle.name} - ${vehicle.total_no}`, itemClassName:"disabled" }
+					return { value:vehicle.name, label:`${vehicle.name} (${vehicle.total_no})`, itemClassName:"disabled" }
 				} else {
-					return { value:vehicle.name, label:`${vehicle.name} - ${vehicle.total_no}`}
+					return { value:vehicle.name, label:`${vehicle.name} (${vehicle.total_no})`}
 				}
 			});
 		} else {
@@ -124,9 +118,9 @@ export const stateMethods = {
 				}
 
 				if(vehicle.max_distance < commonState.state.planetDistance[planSelection] || vehicle.total_no === 0) {
-					return { value:vehicle.name, label:`${vehicle.name} - ${vehicle.total_no}`, itemClassName:"disabled" }
+					return { value:vehicle.name, label:`${vehicle.name} (${vehicle.total_no})`, itemClassName:"disabled" }
 				} else {
-					return { value:vehicle.name, label:`${vehicle.name} - ${vehicle.total_no}` }
+					return { value:vehicle.name, label:`${vehicle.name} (${vehicle.total_no})` }
 				}
 			});
 		}
@@ -135,20 +129,22 @@ export const stateMethods = {
   getFilteredVehicles: (destination, commonState) => {
     switch(destination) {
       case 'Destination1':
-        return stateMethods.getVehiclesObject(commonState.state.destination1Vehicles, commonState.state.planSelection1, commonState.state.vehSelection1, commonState);
+        return utilFunctions.getVehiclesObject(commonState.state.destination1Vehicles, commonState.state.planSelection1, commonState.state.vehSelection1, commonState);
       case 'Destination2':
-        return stateMethods.getVehiclesObject(commonState.state.destination2Vehicles, commonState.state.planSelection2, commonState.state.vehSelection2, commonState);
+        return utilFunctions.getVehiclesObject(commonState.state.destination2Vehicles, commonState.state.planSelection2, commonState.state.vehSelection2, commonState);
       case 'Destination3':
-        return stateMethods.getVehiclesObject(commonState.state.destination3Vehicles, commonState.state.planSelection3, commonState.state.vehSelection3, commonState);
+        return utilFunctions.getVehiclesObject(commonState.state.destination3Vehicles, commonState.state.planSelection3, commonState.state.vehSelection3, commonState);
       case 'Destination4':
-        return stateMethods.getVehiclesObject(commonState.state.destination4Vehicles, commonState.state.planSelection4, commonState.state.vehSelection4, commonState);
+        return utilFunctions.getVehiclesObject(commonState.state.destination4Vehicles, commonState.state.planSelection4, commonState.state.vehSelection4, commonState);
       default:
         return commonState.state.vehicles.map(vehicle => ({value:vehicle.name, label:`${vehicle.name} (${vehicle.total_no})`}));
     }
   },
 
-  planetObject(selPlanet, commonState) {
-    const {planSelection1, planSelection2, planSelection3, planSelection4} = commonState.state;
+  async planetObject(selPlanet, commonState) {
+    const {planSelection1, planSelection2, planSelection3, planSelection4} = await commonState.state;
+    //const { planets } = await commonState.state
+    //console.log('Error here : ', commonState.state.planets[0])
     let pValue = '';
     const planets = commonState.state.planets.map(planet => {
       pValue = planet.name;
@@ -163,67 +159,77 @@ export const stateMethods = {
     return planets.filter(value => Object.keys(value).length !== 0);;
   },
 
-  errorNotification: (error) => {
-    NotificationManager.info(error, 'Incorrect selection. Please retry', 3000
-    )
-  },
 
-  submitJson: async (commonState) => {
-    
+  submitJson: (commonState) => {
+    const headers = {
+      'Content-Type': 'application/json',
+      'Accept' : 'application/json'
+    }
     const { planSelection1, planSelection2, planSelection3, planSelection4, vehSelection1, vehSelection2, vehSelection3, vehSelection4} = commonState.state;
     if(planSelection1 !== '' && planSelection2 !== '' && planSelection3 !== '' && planSelection4 !== '' && vehSelection1 !== '' && vehSelection2 !== '' && vehSelection3 !== '' && vehSelection4 !== '') {
-      const tokenData = await poster('token', {})
-      const data = await poster('find',
-          {
-              "token": tokenData.token,
+      axios.post('https://findfalcone.herokuapp.com/token', {} , { headers: headers })
+        .then((response) => {
+          axios.post('https://findfalcone.herokuapp.com/find',
+            {
+              "token": response.data.token,
               "planet_names": [planSelection1, planSelection2, planSelection3, planSelection4],
               "vehicle_names": [vehSelection1, vehSelection2, vehSelection3, vehSelection4]
-          })
-            
-         console.log('VNames: ', vehSelection1)
-          ReactDOM.render(
-           
-            <Result status={data.status} count={stateMethods.getCount(commonState.state)} planetName={data.planet_name} />, document.getElementById('root')
-          
-          );
-
-      
+            }, { headers: headers })
+            .then((response) => {
+              if(response.data.status === "false") {
+                throw "Please send the Request again or change the Planets and vehicle, Falcone didn't find"
+              }
+              ReactDOM.render(
+                <Result count={utilFunctions.getCount(commonState.state)} planetName={response.data.planet_name} />, document.getElementById('root')
+              );
+            })
+            .catch((error) => {
+              alert(error);
+            });
+        })
+        .catch((error) => {
+          alert(error);
+        })
       }else {
-       stateMethods.errorNotification('Incorrect selection error.')
+        alert('Please select 4 planets and 4 vehicles');
       }
   },
 
 
-  getDestinationAndVehiclesJson: async (commonState) => {
+  getDestinationAndVehiclesJson: (commonState) => {
+    axios.get('https://findfalcone.herokuapp.com/planets')
+			.then((response) => {
+  				commonState.setState ({
+  					planets: response.data,
+  					planetDistance: utilFunctions.planetDistanceJson(response.data),
+  				})
+			})
+			.catch((error) => {
+        alert(error.message);
+			});
 
-        const planetData = await getter('planets')
-        commonState.setState({
-            planets: planetData,
-            planetDistance: stateMethods.planetDistanceJson(planetData),
-    })
-   
-		const vehicleData = await getter('vehicles')
-			
+		axios.get('https://findfalcone.herokuapp.com/vehicles')
+			.then((response) => {
 				commonState.setState ({
-					vehicles: vehicleData,
-					vehiclesSpeed: stateMethods.vehicleSpeedJson(vehicleData),
+					vehicles: response.data,
+					vehiclesSpeed: utilFunctions.vehicleSpeedJson(response.data),
 				});
-			
+			})
+			.catch((error) => {
+        alert(error.message);
+			});
   },
 
   async updateVehicleObject(vehSelection, Selectors, event, commonState) {
-    console.log(vehSelection)
-    console.log(commonState.state[vehSelection].length)
 		if(commonState.state[vehSelection].length) {
-      console.log('Common State: ', commonState.state)
 			await commonState.setState ({
-				[Selectors]: stateMethods.setOriginalVehicle(commonState.state.vehicles),
+				[Selectors]: utilFunctions.setOriginalVehicle(commonState.state.vehicles),
 				[vehSelection]: '',
 			});
 		}
 		commonState.setState ({
 			[vehSelection]: event,
-			[Selectors]: stateMethods.decreaseVehicleNumber(commonState.state[Selectors], event, commonState),
+			[Selectors]: utilFunctions.decreaseVehicleNumber(commonState.state[Selectors], event, commonState),
 		});
 	}
 

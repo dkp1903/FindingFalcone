@@ -38,6 +38,7 @@ class Main extends Component {
 	vehicleSelect (event, destination) {
 		switch (destination) {
 			case 'Destination1':
+				console.log('Goes into dest1')
 				stateMethods.updateVehicleObject('vehSelection1', 'destination1Vehicles', event, this);
 				break;
 			case 'Destination2':
@@ -54,7 +55,7 @@ class Main extends Component {
 	}
 
 	planetSelect(event, destination) {
-		let vehicles = stateMethods.setVehicle(this.state.vehicles);
+		let vehicles = stateMethods.setOriginalVehicle(this.state.vehicles);
 		switch(destination) {
 			case 'Destination1':
 				this.setState ({

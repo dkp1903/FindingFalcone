@@ -14,17 +14,17 @@ import {
 export const stateMethods = {
  
 
-  planetDistanceJson: (data) => {
+  planetDistanceJson: (planetDistanceData) => {
     const pDistance = {};
-    data.forEach((element) => {
+    planetDistanceData.forEach((element) => {
       pDistance[element.name] = element.distance
     });
     return pDistance;
   },
 
-  vehicleSpeedJson: (data) => {
+  vehicleSpeedJson: (vehicleSpeedData) => {
     const vSpeed = {};
-    data.forEach((element) => {
+    vehicleSpeedData.forEach((element) => {
       vSpeed[element.name] = {"speed": element.speed, "distance": element.max_distance}
     });
     return vSpeed;
@@ -37,13 +37,13 @@ export const stateMethods = {
       count += planetDistance[planSelection1] / vehiclesSpeed[vehSelection1].speed;
     }
     if(vehSelection2) {
-      count += planetDistance[planSelection2] / vehiclesSpeed[vehSelection2].speed;
+      count += planetDistance[planSelection2] / vehiclesSpeed[vehSelection2].speed;;
     }
     if(vehSelection3) {
-      count += planetDistance[planSelection3] / vehiclesSpeed[vehSelection3].speed;
+      count += planetDistance[planSelection3] / vehiclesSpeed[vehSelection3].speed;;
     }
     if(vehSelection4) {
-      count += planetDistance[planSelection4] / vehiclesSpeed[vehSelection4].speed;
+      count += planetDistance[planSelection4] / vehiclesSpeed[vehSelection4].speed;;
     }
     return count;
   },
@@ -59,37 +59,37 @@ export const stateMethods = {
     });
   },
 
-  decreaseVehicleNumber: (vehicles, vehicleName, commonState) => {
+  reduceVehicleCount: (vehicles, vehicleName, commonState) => {
 		const {vehSelection1, vehSelection2, vehSelection3, vehSelection4} = commonState.state;
 		return vehicles.map(vehicleObj => {
 			if(vehicleObj.name === vehicleName) {
-				vehicleObj.total_no -= 1;
+				vehicleObj.totalNumber--;
 			}
 			if(vehicleObj.name === vehSelection1){
-				vehicleObj.total_no -= 1;
-				if(vehicleObj.total_no === -1){
-					vehicleObj.total_no = 0;
+				vehicleObj.totalNumber--;
+				if(vehicleObj.totalNumber === -1){
+					vehicleObj.totalNumber = 0;
 					stateMethods.resetDestinationVehicles('destination1Vehicles', 'vehSelection1', commonState);
 				}
 			}
 			if(vehicleObj.name === vehSelection2){
-				vehicleObj.total_no -= 1;
-				if(vehicleObj.total_no === -1){
-					vehicleObj.total_no = 0;
+				vehicleObj.totalNumber--;
+				if(vehicleObj.totalNumber === -1){
+					vehicleObj.totalNumber = 0;
 					stateMethods.resetDestinationVehicles('destination2Vehicles', 'vehSelection2', commonState);
 				}
 			}
 			if(vehicleObj.name === vehSelection3){
-				vehicleObj.total_no -= 1;
-				if(vehicleObj.total_no === -1){
-					vehicleObj.total_no = 0;
+				vehicleObj.totalNumber--;
+				if(vehicleObj.totalNumber === -1){
+					vehicleObj.totalNumber = 0;
 					stateMethods.resetDestinationVehicles('destination3Vehicles', 'vehSelection3', commonState);
 				}
 			}
 			if(vehicleObj.name === vehSelection4){
-				vehicleObj.total_no -= 1;
-				if(vehicleObj.total_no === -1){
-					vehicleObj.total_no = 0;
+				vehicleObj.totalNumber--;
+				if(vehicleObj.totalNumber === -1){
+					vehicleObj.totalNumber = 0;
 					stateMethods.resetDestinationVehicles('destination4Vehicles', 'vehSelection4', commonState);
 				}
 			}
@@ -100,10 +100,10 @@ export const stateMethods = {
   getVehiclesObject: (Selectors, planSelection, vehSelection, commonState) => {
 		if(vehSelection.length) {
 			return Selectors.map(vehicle => {
-				if(vehicle.max_distance < commonState.state.planetDistance[planSelection] || (vehicle.total_no === 0 && vehicle.name !== vehSelection)) {
-					return { value:vehicle.name, label:`${vehicle.name} - ${vehicle.total_no}`, itemClassName:"disabled" }
+				if(vehicle.max_distance < commonState.state.planetDistance[planSelection] || (vehicle.totalNumber === 0 && vehicle.name !== vehSelection)) {
+					return { value:vehicle.name, label:`${vehicle.name} (${vehicle.totalNumber})`, itemClassName:"disabled" }
 				} else {
-					return { value:vehicle.name, label:`${vehicle.name} - ${vehicle.total_no}`}
+					return { value:vehicle.name, label:`${vehicle.name} (${vehicle.totalNumber})`}
 				}
 			});
 		} else {
@@ -111,22 +111,22 @@ export const stateMethods = {
 			return commonState.state.vehicles.map(vehiclel => {
 				const vehicle = {...vehiclel};
 				if(vehSelection1 === vehicle.name) {
-					vehicle.total_no -= 1;
+					vehicle.totalNumber--;
 				}
 				if(vehSelection2 === vehicle.name) {
-					vehicle.total_no -= 1;
+					vehicle.totalNumber--;
 				}
 				if(vehSelection3 === vehicle.name) {
-					vehicle.total_no -= 1;
+					vehicle.totalNumber--;
 				}
 				if(vehSelection4 === vehicle.name) {
-					vehicle.total_no -= 1;
+					vehicle.totalNumber--;
 				}
 
-				if(vehicle.max_distance < commonState.state.planetDistance[planSelection] || vehicle.total_no === 0) {
-					return { value:vehicle.name, label:`${vehicle.name} - ${vehicle.total_no}`, itemClassName:"disabled" }
+				if(vehicle.max_distance < commonState.state.planetDistance[planSelection] || vehicle.totalNumber === 0) {
+					return { value:vehicle.name, label:`${vehicle.name} (${vehicle.totalNumber})`, itemClassName:"disabled" }
 				} else {
-					return { value:vehicle.name, label:`${vehicle.name} - ${vehicle.total_no}` }
+					return { value:vehicle.name, label:`${vehicle.name} (${vehicle.totalNumber})` }
 				}
 			});
 		}
@@ -143,7 +143,7 @@ export const stateMethods = {
       case 'Destination4':
         return stateMethods.getVehiclesObject(commonState.state.destination4Vehicles, commonState.state.planSelection4, commonState.state.vehSelection4, commonState);
       default:
-        return commonState.state.vehicles.map(vehicle => ({value:vehicle.name, label:`${vehicle.name} (${vehicle.total_no})`}));
+        return commonState.state.vehicles.map(vehicle => ({value:vehicle.name, label:`${vehicle.name} (${vehicle.totalNumber})`}));
     }
   },
 
@@ -180,7 +180,7 @@ export const stateMethods = {
               "vehicle_names": [vehSelection1, vehSelection2, vehSelection3, vehSelection4]
           })
             
-         console.log('VNames: ', vehSelection1)
+         
           ReactDOM.render(
            
             <Result status={data.status} count={stateMethods.getCount(commonState.state)} planetName={data.planet_name} />, document.getElementById('root')
@@ -212,10 +212,7 @@ export const stateMethods = {
   },
 
   async updateVehicleObject(vehSelection, Selectors, event, commonState) {
-    console.log(vehSelection)
-    console.log(commonState.state[vehSelection].length)
 		if(commonState.state[vehSelection].length) {
-      console.log('Common State: ', commonState.state)
 			await commonState.setState ({
 				[Selectors]: stateMethods.setOriginalVehicle(commonState.state.vehicles),
 				[vehSelection]: '',
@@ -223,7 +220,7 @@ export const stateMethods = {
 		}
 		commonState.setState ({
 			[vehSelection]: event,
-			[Selectors]: stateMethods.decreaseVehicleNumber(commonState.state[Selectors], event, commonState),
+			[Selectors]: stateMethods.reduceVehicleCount(commonState.state[Selectors], event, commonState),
 		});
 	}
 

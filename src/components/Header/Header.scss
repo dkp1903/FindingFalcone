@@ -1,0 +1,113 @@
+#container{
+  height: 600px;
+  
+  .header{
+    height:100px;
+    div{
+      .title{
+        display: inline-block;
+        width: 100%;
+        h1{
+          float: right;
+          padding: 5px;
+          margin: 0 35% 0 0;
+        }
+      }
+      .header-options{
+        display: inline-block;
+        width:20%;
+        .reset{
+          position: relative;
+          cursor: pointer;
+          bottom: 18px;
+          margin-left: 12%;
+        }
+        .reset-button{
+            background-color: #5850ec;
+            font-family: 'Poppins', source-code-pro;
+            font-size: 20px;
+            border-radius: 10px;
+            color: #fff;
+            padding: 10px;
+        }
+      }
+    }
+    
+  }
+
+}
+
+.css-1okebmr-indicatorSeparator{
+  display:none;
+}
+
+@media screen and (max-width: 1120px) {
+  .header{
+    .title{
+      width: 60% !important;
+      h1{
+        margin: 0 10% 0 0 !important;
+      }
+    }
+    .header-options{
+      width:39% !important;
+      .reset{
+        float: right !important;
+      }
+    }
+    
+  }
+
+
+}
+
+@media screen and (max-width: 860px) {
+  div{
+    font-size: 13px !important;
+  }
+  p{
+    font-size: 15px !important;
+  }
+  h1{
+    font-size: 20px !important;
+  }
+  h4{
+    font-size: 14px !important;
+  }
+  h2{
+    font-size: 16px !important;
+  }
+  button{
+    height: 40px;
+    background-color: black;
+    color: white;
+    padding: 10px !important;
+  }
+  .des_select{
+    height: 250px !important;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  div{
+    font-size: 13px !important;
+  }
+  p{
+    font-size: 14px !important;
+  }
+  h1{
+    font-size: 24px !important;
+  }
+  h4{
+    font-size: 12px !important;
+  }
+  h2{
+    font-size: 14px !important;
+  }
+  .des_select{
+    margin-top: 0 !important;
+  }
+  #container{
+    height: 350px !important;
+  }
+}

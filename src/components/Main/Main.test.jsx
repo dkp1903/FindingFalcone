@@ -1,7 +1,7 @@
 import React from "react";
 import { render, unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
-import Destination from './Destination';
+import Main from './Main';
 
 let container = null;
 
@@ -20,7 +20,7 @@ afterEach(() => {
 
 it("renders successfully with props", () => {
   act(() => {
-    render(<Destination />, container);
+    render(<Main />, container);
   });
   expect(container).toMatchSnapshot();
 });

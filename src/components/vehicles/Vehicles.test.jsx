@@ -20,9 +20,9 @@ afterEach(() => {
 
 let propObject = {
   destination:"Destination1",
-  vehicleClass:"vehicleRadioButton1",
-  vehicles: [{value:"Space pot", label:"Space pot (2)"},{ value:"Rocket", label:"Rocket (1)"}],
-  selectedVehicle: "Rocket"
+  vehicleClass:"radBtn1",
+  vehicles: [{value:"VehicleB", label:"VehicleB (2)"},{ value:"VehicleA", label:"VehicleA (1)"}],
+  vehSelection: "VehicleA"
 }
 
 it("renders successfully with props", () => {

@@ -3,16 +3,30 @@ import PropTypes from 'prop-types';
 import './Result.scss';
 
 const Result = (props) => {
-  
-    return (
-        <div className="result">
-          <h1>Finding Falcone!</h1>
-          <p>Success! Congratulations for finding Falcone. King Shah is mighty pleased.</p>
+    console.log('Prop status: ', props.status)
+    if(props.status == "success") 
+      return (
+        
+          <div className="result">
+            <h1>Found Falcone!</h1>
+            <p>You got me the damn Falcone!</p>
+            <p>Time Taken: {props.count}</p>
+            <p>Planet Found: {props.planetName}</p>
+            <button onClick={() => window.location.reload()}>Not satisfied? Try your luck again</button>
+          </div>  
+        
+      ); 
+    else 
+      return (
+      
+         <div className="result">
+          <h1>Not found Falcone!</h1>
+          
           <p>Time Taken: {props.count}</p>
-          <p>Planet Found: {props.planetName}</p>
-          <button onClick={() => window.location.reload()}>Start Again</button>
+          
+          <button onClick={() => window.location.reload()}>Retry</button>
         </div>
-    );
+    )
   
 }
 

@@ -20,7 +20,7 @@ afterEach(() => {
 
 it("renders successfully with props", () => {
   act(() => {
-    render(<Result count={200} planetName="Earth" />, container);
+    render(<Result count={200} planetName="PlanetB" />, container);
   });
   expect(container).toMatchSnapshot();
 });

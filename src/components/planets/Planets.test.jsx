@@ -24,10 +24,10 @@ it("renders successfully with props", () => {
   act(() => {
     render(<Planets
       destination='Destination1'
-      vehicleClass='vehicleRadioButton1'
-      selectedVehicle='Space Pot'
-      options={[{value: "Mangal", label: "Mangal"},{value: "Earth", label: "Earth"}, {value: "Leoine", label: "Leoine"}]}
-      vehicles={[{value:"Space pot", label:"Space pot (2)"},{ value:"Rocket", label:"Rocket (1)"}]}
+      vehicleClass='radBtn'
+      vehSelection='VehicleB'
+      options={[{value: "PlanetA", label: "PlanetA"},{value: "PlanetB", label:"PlanetB"}, {value: "PlanetC", label: "PlanetC"}]}
+      vehicles={[{value:"VehicleB", label:"VehicleB (2)"},{ value:"VehicleA", label:"VehicleA (1)"}]}
       allProps={planetSelect => {() => {}}, vehicleSelect => {() => {}}}
       />, container);
   });

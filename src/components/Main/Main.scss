@@ -1,4 +1,4 @@
-#main_container{
+#container{
   height: 600px;
   
   .header{
@@ -24,7 +24,7 @@
         }
       }
     }
-    div.planet-message{
+    div.hint{
       width:70%;
       p{
         font-size: 20px;
@@ -37,7 +37,7 @@
   }
 
 
-  .des_select{
+  .select{
     height: 350px;
     margin-top: 50px;
     > div > div{
@@ -53,18 +53,23 @@
     }
   }
 
-  .footer{
+  .go-button{
     text-align: center;
     button{
-      background-color: #4CAF50;
-      border: 3px solid black;
-      color: black;
+      background-color: #5850ec;
+      border-radius: 10px;
+      color: white;
+      font-family: 'Poppins';
       padding: 15px 32px;
       text-align: center;
       text-decoration: none;
       display: inline-block;
       font-size: 16px;
     }
+  }
+  .footer{
+    text-align: center;
+    padding-top: 3%;
   }
 }
 
@@ -91,17 +96,17 @@
         float: right !important;
       }
     }
-    .planet-message p{
+    .hint p{
       margin: 10px 15% 10px 0 !important;
     }
   }
 
-  .des_select > div > div{
+  .select > div > div{
     margin-left: 2% !important;
     width: 16% !important;
   }
 
-  .des_select div.count{
+  .select div.count{
       width: 25% !important;
       margin-left: 10px !important;
       h2{
@@ -118,7 +123,7 @@
     font-size: 15px !important;
   }
   h1{
-    font-size: 24px !important;
+    font-size: 20px !important;
   }
   h4{
     font-size: 14px !important;
@@ -130,7 +135,7 @@
     height: 40px;
     padding: 10px !important;
   }
-  .des_select{
+  .select{
     height: 250px !important;
   }
 }
@@ -151,10 +156,10 @@
   h2{
     font-size: 14px !important;
   }
-  .des_select{
+  .select{
     margin-top: 0 !important;
   }
-  #main_container{
+  #container{
     height: 350px !important;
   }
 }

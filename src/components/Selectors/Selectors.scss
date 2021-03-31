@@ -1,4 +1,13 @@
-.vehicleRadioButton1,.vehicleRadioButton2,.vehicleRadioButton3,.vehicleRadioButton4{
+.count > span{
+	background-color: #049dff;
+	color: black;
+	margin-top: 20px;
+	padding: 10px;
+	font-family: 'Poppins';
+	font-size: 30px;
+	border-radius: 10px;
+}
+.radBtn1,.radBtn2,.radBtn3,.radBtn4{
   padding-top: 30px;
   position: absolute;
   div div{
@@ -13,7 +22,7 @@ input {
 
 
 @media screen and (max-width: 860px) {
-	.vehicleRadioButton1,.vehicleRadioButton2,.vehicleRadioButton3,.vehicleRadioButton4{
+	.radBtn1,.radBtn2,.radBtn3,.radBtn4{
 		word-spacing: 1px !important;
 		label{
 			font-size: 11px !important;
@@ -28,7 +37,7 @@ input {
 }
 
 @media screen and (max-width: 620px) {
-	.vehicleRadioButton1,.vehicleRadioButton2,.vehicleRadioButton3,.vehicleRadioButton4{
+	.radBtn1,.radBtn2,.radBtn3,.radBtn4{
 		word-spacing: -1px !important;
 	    div div{
 	      margin: 3px 0 !important;

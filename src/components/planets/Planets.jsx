@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Select from 'react-select';
 import PropTypes from 'prop-types';
 import Vehicles from '.././vehicles/Vehicles.jsx';
@@ -48,6 +48,6 @@ Planets.propTypes = {
   vehicleClass: PropTypes.string.isRequired,
   destination: PropTypes.string.isRequired,
   options: PropTypes.array.isRequired,
-  selectedVehicle: PropTypes.string.isRequired,
+  vehSelection: PropTypes.string.isRequired,
 }
 export default Planets

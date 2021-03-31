@@ -3,34 +3,34 @@
 exports[`renders successfully with props 1`] = `
 <div>
   <div
-    class="vehicleRadioButton1"
+    class="radBtn1"
   >
     <div>
       <div>
         <input
-          id="react-radio-button-group-1-Space pot"
-          name="vehicleRadioButton1"
+          id="react-radio-button-group-1-VehicleB"
+          name="radBtn1"
           type="radio"
-          value="Space pot"
+          value="VehicleB"
         />
         <label
-          for="react-radio-button-group-1-Space pot"
+          for="react-radio-button-group-1-VehicleB"
         >
-          Space pot (2)
+          VehicleB (2)
         </label>
       </div>
       <div>
         <input
           checked=""
-          id="react-radio-button-group-1-Rocket"
-          name="vehicleRadioButton1"
+          id="react-radio-button-group-1-VehicleA"
+          name="radBtn1"
           type="radio"
-          value="Rocket"
+          value="VehicleA"
         />
         <label
-          for="react-radio-button-group-1-Rocket"
+          for="react-radio-button-group-1-VehicleA"
         >
-          Rocket (1)
+          VehicleA (1)
         </label>
       </div>
     </div>

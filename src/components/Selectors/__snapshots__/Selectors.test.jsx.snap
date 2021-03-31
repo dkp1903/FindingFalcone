@@ -3,6 +3,15 @@
 exports[`renders successfully with props 1`] = `
 <div>
   <div>
+    <div
+      class="count"
+    >
+      <span>
+        Time :
+        0
+         
+      </span>
+    </div>
     <div>
       <h4>
         Destination1
@@ -72,42 +81,15 @@ exports[`renders successfully with props 1`] = `
           </div>
         </div>
         <input
-          name="selectvehicleRadioButton1"
+          name="selectradBtn1"
           type="hidden"
           value=""
         />
       </div>
       <div
-        class="vehicleRadioButton1"
+        class="radBtn1"
       >
-        <div>
-          <div>
-            <input
-              id="react-radio-button-group-1-undefined"
-              name="vehicleRadioButton1"
-              type="radio"
-              value=""
-            />
-            <label
-              for="react-radio-button-group-1-undefined"
-            >
-              undefined (undefined)
-            </label>
-          </div>
-          <div>
-            <input
-              id="react-radio-button-group-1-undefined"
-              name="vehicleRadioButton1"
-              type="radio"
-              value=""
-            />
-            <label
-              for="react-radio-button-group-1-undefined"
-            >
-              undefined (undefined)
-            </label>
-          </div>
-        </div>
+        <div />
       </div>
     </div>
     <div>
@@ -179,42 +161,15 @@ exports[`renders successfully with props 1`] = `
           </div>
         </div>
         <input
-          name="selectvehicleRadioButton2"
+          name="selectradBtn2"
           type="hidden"
           value=""
         />
       </div>
       <div
-        class="vehicleRadioButton2"
+        class="radBtn2"
       >
-        <div>
-          <div>
-            <input
-              id="react-radio-button-group-2-undefined"
-              name="vehicleRadioButton2"
-              type="radio"
-              value=""
-            />
-            <label
-              for="react-radio-button-group-2-undefined"
-            >
-              undefined (undefined)
-            </label>
-          </div>
-          <div>
-            <input
-              id="react-radio-button-group-2-undefined"
-              name="vehicleRadioButton2"
-              type="radio"
-              value=""
-            />
-            <label
-              for="react-radio-button-group-2-undefined"
-            >
-              undefined (undefined)
-            </label>
-          </div>
-        </div>
+        <div />
       </div>
     </div>
     <div>
@@ -286,13 +241,13 @@ exports[`renders successfully with props 1`] = `
           </div>
         </div>
         <input
-          name="selectvehicleRadioButton3"
+          name="selectradBtn3"
           type="hidden"
           value=""
         />
       </div>
       <div
-        class="vehicleRadioButton3"
+        class="radBtn3"
       >
         <div />
       </div>
@@ -366,52 +321,16 @@ exports[`renders successfully with props 1`] = `
           </div>
         </div>
         <input
-          name="selectvehicleRadioButton4"
+          name="selectradBtn4"
           type="hidden"
           value=""
         />
       </div>
       <div
-        class="vehicleRadioButton4"
+        class="radBtn4"
       >
-        <div>
-          <div>
-            <input
-              id="react-radio-button-group-4-undefined"
-              name="vehicleRadioButton4"
-              type="radio"
-              value=""
-            />
-            <label
-              for="react-radio-button-group-4-undefined"
-            >
-              undefined (undefined)
-            </label>
-          </div>
-          <div>
-            <input
-              id="react-radio-button-group-4-undefined"
-              name="vehicleRadioButton4"
-              type="radio"
-              value=""
-            />
-            <label
-              for="react-radio-button-group-4-undefined"
-            >
-              undefined (undefined)
-            </label>
-          </div>
-        </div>
+        <div />
       </div>
-    </div>
-    <div
-      class="count"
-    >
-      <h2>
-        Time Taken: 
-        0
-         
-      </h2>
     </div>
   </div>
 </div>

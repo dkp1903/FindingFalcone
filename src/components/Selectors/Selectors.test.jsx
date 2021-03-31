@@ -1,7 +1,7 @@
 import React from "react";
 import { render, unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
-import DestinationVehicles from "./DestinationVehicles.jsx";
+import Selectors from "./Selectors.jsx";
 
 let container = null;
 
@@ -17,27 +17,30 @@ afterEach(() => {
   container.remove();
   container = null;
 });
-let dummyObject = {
+let planetObj = {
   state: {
-    selectedVehicle1: "",
-    selectedVehicle2: "",
-    selectedVehicle3: "",
-    selectedVehicle4: "",
-    selectedPlanet1: "Earth",
-    selectedPlanet2: "Mars",
-    selectedPlanet3: "",
-    selectedPlanet4: "Leoine",
-    planets: [{name: "Mangal", label: "Mangal"},{name: "Earth", label: "Earth"}, {name: "Leoine", label: "Leoine"}],
-    vehicles: [{value:"Space pot", label:"Space pot (2)"},{ value:"Rocket", label:"Rocket (1)"}],
-    planetDistance: {"Earth": 200}
+    vehSelection1: "",
+    vehSelection2: "",
+    vehSelection3: "",
+    vehSelection4: "",
+    planetSelection1: "PlanetB",
+    planetSelection2: "Mars",
+    planetSelection3: "",
+    planetSelection4: "PlanetC",
+    planets: [{name: "PlanetA", label: "PlanetA"},
+              {name: "PlanetB", label: "PlanetB"}, 
+              {name: "PlanetC", label: "PlanetC"}],
+    vehicles: [{value:"VehicleB", label:"VehicleB (2)"},
+                { value:"VehicleA", label:"VehicleA (1)"}],
+    planetDistance: {"PlanetB": 200}
   }
 }
 
 it("renders successfully with props", () => {
 
   act(() => {
-    render(<DestinationVehicles
-      self={dummyObject}
+    render(<Selectors
+      self={planetObj}
       planetSelect={() => {}}
       vehicleSelect={() => {}}
       />, container);

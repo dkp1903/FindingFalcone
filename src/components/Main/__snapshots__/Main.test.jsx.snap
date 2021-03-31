@@ -3,8 +3,13 @@
 exports[`renders successfully with props 1`] = `
 <div>
   <div
-    id="main_container"
+    id="container"
   >
+    <div
+      class="notification-container notification-container-empty"
+    >
+      <div />
+    </div>
     <div
       class="header"
     >
@@ -13,7 +18,7 @@ exports[`renders successfully with props 1`] = `
           class="title"
         >
           <h1>
-            Finding Falcone! 
+            Get me the damn Falcon!
           </h1>
         </div>
         <div
@@ -22,32 +27,35 @@ exports[`renders successfully with props 1`] = `
           <div
             class="reset"
           >
-            <span>
-              Reset
-            </span>
-            <span>
-                |  
-            </span>
-            <span
-              class="geekspage"
+            <button
+              class="reset-button"
             >
-               Geeks Trust Home 
-            </span>
+              Reset
+            </button>
           </div>
         </div>
       </div>
       <div
-        class="planet-message"
+        class="hint"
       >
         <p>
-          Select planets you want to search in: 
+          Be careful in what you choose :}
         </p>
       </div>
     </div>
     <div
-      class="des_select"
+      class="select"
     >
       <div>
+        <div
+          class="count"
+        >
+          <span>
+            Time :
+            0
+             
+          </span>
+        </div>
         <div>
           <h4>
             Destination1
@@ -117,13 +125,13 @@ exports[`renders successfully with props 1`] = `
               </div>
             </div>
             <input
-              name="selectvehicleRadioButton1"
+              name="selectradBtn1"
               type="hidden"
               value=""
             />
           </div>
           <div
-            class="vehicleRadioButton1"
+            class="radBtn1"
           >
             <div />
           </div>
@@ -197,13 +205,13 @@ exports[`renders successfully with props 1`] = `
               </div>
             </div>
             <input
-              name="selectvehicleRadioButton2"
+              name="selectradBtn2"
               type="hidden"
               value=""
             />
           </div>
           <div
-            class="vehicleRadioButton2"
+            class="radBtn2"
           >
             <div />
           </div>
@@ -277,13 +285,13 @@ exports[`renders successfully with props 1`] = `
               </div>
             </div>
             <input
-              name="selectvehicleRadioButton3"
+              name="selectradBtn3"
               type="hidden"
               value=""
             />
           </div>
           <div
-            class="vehicleRadioButton3"
+            class="radBtn3"
           >
             <div />
           </div>
@@ -357,36 +365,38 @@ exports[`renders successfully with props 1`] = `
               </div>
             </div>
             <input
-              name="selectvehicleRadioButton4"
+              name="selectradBtn4"
               type="hidden"
               value=""
             />
           </div>
           <div
-            class="vehicleRadioButton4"
+            class="radBtn4"
           >
             <div />
           </div>
         </div>
-        <div
-          class="count"
-        >
-          <h2>
-            Time Taken: 
-            0
-             
-          </h2>
-        </div>
       </div>
     </div>
     <div
-      class="footer"
+      class="go-button"
     >
       <button
         type="button"
       >
         Go!
       </button>
+    </div>
+    <div
+      class="footer"
+    >
+      <div
+        class="container"
+      >
+        <p>
+          &copy Finding Falcone 2021
+        </p>
+      </div>
     </div>
   </div>
 </div>

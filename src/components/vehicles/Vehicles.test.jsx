@@ -25,7 +25,7 @@ let propObject = {
   vehSelection: "VehicleA"
 }
 
-it("renders successfully with props", () => {
+it("checks render", () => {
 
   act(() => {
     render(<Vehicles

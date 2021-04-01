@@ -19,7 +19,7 @@ afterEach(() => {
 });
 
 
-it("renders successfully with props", () => {
+it("check render", () => {
 
   act(() => {
     render(<Planets

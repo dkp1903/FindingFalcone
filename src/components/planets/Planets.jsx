@@ -19,12 +19,13 @@ const Planets = (props) => {
     control: () => ({
       // none of react-select's styles are passed to <Control />
       width: 200,
+      
     }),
     singleValue: (provided, state) => {
       const opacity = state.isDisabled ? 0.5 : 1;
       const transition = 'opacity 300ms';
-  
-      return { ...provided, opacity, transition };
+      
+      return { ...provided, color: 'white', opacity, transition };
     }
   }
     
@@ -32,7 +33,6 @@ const Planets = (props) => {
       <div>
         <h4>{destination}</h4>
         <Select
-          
           name={"select"+vehicleClass}
           options={options}
           styles={customStyles}

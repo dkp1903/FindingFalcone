@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders successfully with props 1`] = `
+exports[`check render 1`] = `
 <div>
   <div
     id="container"
@@ -39,7 +39,7 @@ exports[`renders successfully with props 1`] = `
         class="hint"
       >
         <p>
-          Be careful in what you choose :}
+          Pick your planets
         </p>
       </div>
     </div>

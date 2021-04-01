@@ -1,6 +1,14 @@
 #container{
   height: 600px;
-  
+  .notification {
+    background: #000;
+    color: red;
+    border: 2px thick;
+    display: inline-block;
+    transition: all 3s ease-out;
+    padding: 10px;
+    transform: translateX('10')
+  }
   .header{
     height:100px;
     div{
@@ -40,6 +48,7 @@
   .select{
     height: 350px;
     margin-top: 50px;
+    color: #fff;
     > div > div{
       margin-left: 3%;
       width: 17%;

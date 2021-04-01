@@ -6,12 +6,15 @@ import {
   Route,
   Link
 } from "react-router-dom";
-
-const App = () => (
+import Result from './components/Result/Result'
+const App = (props) => (
     <Router>
         <Switch>
             <Route exact path="/">
                 <Main />
+            </Route>
+            <Route exact path="/result">
+                <Result location={props.location} />
             </Route>
             
         </Switch>

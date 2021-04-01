@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders successfully with props 1`] = `
+exports[`check render 1`] = `
 <div>
   <div>
     <h4>

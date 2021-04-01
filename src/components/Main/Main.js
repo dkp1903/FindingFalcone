@@ -5,12 +5,19 @@ import Selectors from '.././Selectors/Selectors.jsx';
 import Header from '../Header/Header'
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 import Footer from '../Footer/Footer'
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Link
+  } from "react-router-dom";
 
 class Main extends Component {
 	constructor(props) {
 		super(props);
 		this.planetSelect = this.planetSelect.bind(this);
 		this.vehicleSelect = this.vehicleSelect.bind(this);
+		//this.showResult = this.showResult.bind(this);
 		this.state = {
 			planets: [],
 			vehicles: [],
@@ -28,6 +35,7 @@ class Main extends Component {
 			destination4Vehicles: [],
 			vehiclesSpeed: {},
 			planetDistance: {},
+			tokenData: {}
 		}
 	}
 
@@ -55,7 +63,7 @@ class Main extends Component {
 	}
 
 	planetSelect(event, destination) {
-		let vehicles = stateMethods.setOriginalVehicle(this.state.vehicles);
+		let vehicles = stateMethods.setVehicle(this.state.vehicles);
 		switch(destination) {
 			case 'Destination1':
 				this.setState ({
@@ -89,16 +97,18 @@ class Main extends Component {
 				break;
 		}
 	}
-
+	
 	render() {
 		return (
 			<div id='container'>
+					<div className='notification'>
 					<NotificationContainer />
+					</div>
 					<div className="header">
 						<Header />
 						
 						<div className="hint">
-							<p>Be careful in what you choose :}</p>
+							<p>Pick your planets</p>
 						</div>
 					</div>
 
@@ -107,7 +117,21 @@ class Main extends Component {
 					</div>
 					
 					<div className="go-button">
-						<button type="button" onClick={() => stateMethods.submitJson(this)} >Go!</button>
+						<button type="button" onClick={() => stateMethods.makeRequest(this)} >Go!</button>
+						<div>{this.state.tokenData.status}</div>
+
+						{(this.state.tokenData.status === 'success' || 
+						this.state.tokenData.status === 'false') && <Link 
+							to={{
+								pathname: "/result",
+								state: {
+									status: this.state.tokenData.status,
+									count: stateMethods.getCount(this.state),
+									planetName: this.state.tokenData.planet_name
+								}
+							}}
+						>Show Result
+						</Link>}
 					</div>
 					<div className="footer">
 						<Footer />

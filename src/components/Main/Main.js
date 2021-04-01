@@ -100,7 +100,9 @@ class Main extends Component {
 	
 	render() {
 		return (
+
 			<div id='container'>
+			
 					<div className='notification'>
 					<NotificationContainer />
 					</div>
@@ -117,11 +119,14 @@ class Main extends Component {
 					</div>
 					
 					<div className="go-button">
-						<button type="button" onClick={() => stateMethods.makeRequest(this)} >Go!</button>
-						<div>{this.state.tokenData.status}</div>
+						<button type="button" onClick={() => stateMethods.makeRequest(this)} >Calculate Result</button>
+						
 
 						{(this.state.tokenData.status === 'success' || 
-						this.state.tokenData.status === 'false') && <Link 
+						this.state.tokenData.status === 'false') && 
+						<button className="go-button"
+						>
+						<Link 
 							to={{
 								pathname: "/result",
 								state: {
@@ -130,12 +135,15 @@ class Main extends Component {
 									planetName: this.state.tokenData.planet_name
 								}
 							}}
-						>Show Result
-						</Link>}
+						>Go to result now!
+						</Link>
+						</button>}
+						
 					</div>
 					<div className="footer">
 						<Footer />
 					</div>
+					
 			</div>
 		);
 	}

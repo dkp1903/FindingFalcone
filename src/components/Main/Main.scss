@@ -1,13 +1,13 @@
 #container{
   height: 600px;
   .notification {
-    background: #000;
+    background: #808080;
     color: red;
     border: 2px thick;
     display: inline-block;
-    transition: all 3s ease-out;
-    padding: 10px;
-    transform: translateX('10')
+    border-radius: 15px;
+    padding: 5px;
+    
   }
   .header{
     height:100px;

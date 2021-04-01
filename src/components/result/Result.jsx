@@ -11,9 +11,10 @@ import {
 
 const Result = (props) => {
     console.log('Prop status: ', props.location.state.status)
+   
     if(props.location.state.status == "success") 
       return (
-        
+        // <Router>
           <div className="result">
             <h1>Found Falcone!</h1>
             <p>You got me the damn Falcone!</p>
@@ -21,9 +22,9 @@ const Result = (props) => {
             <p>Planet Found: {props.location.state.planetName}</p>
             <Link to="/"> Retry
           </Link>
-            {/* <button onClick={() => window.location.reload()}>Not satisfied? Try your luck again</button> */}
+            {/* <button onClick={reload}>Not satisfied? Try your luck again</button>  */}
           </div>  
-        
+       
       ); 
     else 
       return (
@@ -32,10 +33,12 @@ const Result = (props) => {
           <h1>Not found Falcone!</h1>
           
           <p>Time Taken: {props.location.state.count}</p>
-          <Link to="/"> Retry
-          {/* <button onClick={() => window.location.reload()}>Retry</button> */}
-          </Link>
+          <Link to="/"> Retry 
+          
+           </Link>
+
         </div>
+        
     )
   
 }

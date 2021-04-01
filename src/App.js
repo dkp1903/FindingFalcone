@@ -6,7 +6,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import Result from './components/Result/Result'
+import Result from './components/Result/Result.jsx'
 const App = (props) => (
     <Router>
         <Switch>

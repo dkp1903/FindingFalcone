@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import './Selectors.scss';
-import Planets from '.././Planets/Planets.jsx';
+import Planets from '.././planets/Planets.jsx';
 import { stateMethods } from '../../utils/stateUpdaterMethods.js';
 
 const Selectors = (props) => {

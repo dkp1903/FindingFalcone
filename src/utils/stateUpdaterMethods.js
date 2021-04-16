@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import Result from '.././components/Result/Result.jsx';
+import Result from '.././components/result/Result.jsx';
 import { getter, poster } from './services/apiCalls'
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 import {
